@@ -95,6 +95,7 @@ function selectAnswer(e) {
 
 function showScore() {
   resetState();
+  console.log(showToast());
   questionElement.innerHTML = `You scored ${score} out of${questions.length}!`;
   nextButton.innerHTML = "play again";
   nextButton.style.display = "block";
@@ -117,3 +118,23 @@ nextButton.addEventListener("click", () => {
   }
 });
 startQuiz();
+
+let toastBox = document.getElementById("toastBox");
+let successMsg =
+  ' <i class="fa-solid fa-circle-check"></i>Successfully submitted';
+let errorMsg = '<i class="fa-solid fa-circle-xmark"></i>Please fix the error!';
+let invalidMsg =
+  '<i class="fa-solid fa-circle-exclamation"></i>Invalid input, check again';
+
+function showToast(msg) {
+  let toast = document.createElement("div");
+  toast.classList.add("toast");
+  toast.innerHTML = msg;
+  toastBox.appendChild(toast);
+  console.log("does it work");
+  toast.classList.add("good job");
+
+  setTimeout(() => {
+    toast.remove();
+  }, 6000);
+}
