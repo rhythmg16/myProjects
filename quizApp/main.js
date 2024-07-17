@@ -2,10 +2,26 @@ const questions = [
   {
     question: "What is the largest animal in the world?",
     answers: [
-      { text: "Shark", correct: false },
-      { text: "Blue Whale", correct: true },
-      { text: "Elephant", correct: false },
-      { text: "Giraffe", correct: false },
+      {
+        text: "Shark",
+        correct: false,
+        msg: "WRONG, fun fact: They eat people in Florida",
+      },
+      {
+        text: "Blue Whale",
+        correct: true,
+        msg: "CORRECT, fun fact: They can reach speeds up to 30 mph in the water",
+      },
+      {
+        text: "Elephant",
+        correct: false,
+        msg: "WRONG, fun fact: They are very big animals",
+      },
+      {
+        text: "Giraffe",
+        correct: false,
+        msg: "WRONG, fun fact: They are very tall",
+      },
     ],
   },
   {
@@ -61,6 +77,7 @@ function showQuestion() {
     button.innerHTML = answer.text; // button = "<button>Elephant</button>"
     button.classList.add("btn"); // button = "<button class = "btn">Elephant</button>"
     answerButtons.appendChild(button);
+    button.dataset.msg = answer.msg;
     if (answer.correct) {
       button.dataset.correct = answer.correct;
     }
@@ -78,12 +95,17 @@ function resetState() {
 function selectAnswer(e) {
   const selectedBtn = e.target;
   const isCorrect = selectedBtn.dataset.correct === "true";
+  const msg = selectedBtn.dataset.msg;
+
   if (isCorrect) {
     selectedBtn.classList.add("correct");
     score++;
+    showToast(msg, true);
   } else {
     selectedBtn.classList.add("incorrect");
+    showToast(msg, false);
   }
+  console.log("does this work");
   Array.from(answerButtons.children).forEach((button) => {
     if (button.dataset.correct === "true") {
       button.classList.add("correct");
@@ -95,7 +117,7 @@ function selectAnswer(e) {
 
 function showScore() {
   resetState();
-  console.log(showToast());
+  showToast();
   questionElement.innerHTML = `You scored ${score} out of${questions.length}!`;
   nextButton.innerHTML = "play again";
   nextButton.style.display = "block";
@@ -120,19 +142,22 @@ nextButton.addEventListener("click", () => {
 startQuiz();
 
 let toastBox = document.getElementById("toastBox");
-let successMsg =
-  ' <i class="fa-solid fa-circle-check"></i>Successfully submitted';
+let successMsg = ' <i class="fa-solid fa-circle-check"></i>Good Job!';
 let errorMsg = '<i class="fa-solid fa-circle-xmark"></i>Please fix the error!';
-let invalidMsg =
-  '<i class="fa-solid fa-circle-exclamation"></i>Invalid input, check again';
 
-function showToast(msg) {
+function showToast(msg, isCorrect) {
+  console.log(msg);
   let toast = document.createElement("div");
   toast.classList.add("toast");
   toast.innerHTML = msg;
   toastBox.appendChild(toast);
-  console.log("does it work");
-  toast.classList.add("good job");
+  if (isCorrect) {
+    toast.classList.add("goodJob");
+    console.log("does it work");
+  } else {
+    toast.classList.add("wrong");
+    console.log("does it work");
+  }
 
   setTimeout(() => {
     toast.remove();
