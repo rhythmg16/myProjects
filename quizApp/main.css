@@ -84,12 +84,16 @@ body {
   background: white;
   font-weight: 500;
   margin: 15px 0;
+  padding: 15px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   position: relative;
   transform: translateX(100%);
   animation: moveleft 0.5s linear forwards;
+}
+.toast.correct i {
+  color: green;
 }
 @keyframes moveleft {
   100% {
@@ -99,7 +103,7 @@ body {
 .toast i {
   margin: 0 20px;
   font-size: 35px;
-  color: green;
+  color: red;
 }
 .toast::after {
   content: "";
@@ -108,11 +112,14 @@ body {
   bottom: 0;
   width: 100%;
   height: 5px;
-  background: green;
+  background: red;
   animation: anim 5s linear forwards;
 }
 @keyframes anim {
   100% {
     width: 0;
   }
+}
+.toast.correct::after {
+  background: green;
 }
