@@ -12,6 +12,7 @@ const projectArray = [
   { name: "weatherApp", link: "weatherApp/main.html" },
   { name: "notesApp", link: "notesApp/main.html" },
   { name: "toDoList", link: "toDoList/main.html" },
+  { name: "musicPlayer", link: "musicPlayer/main.html" },
 ];
 
 projectArray.forEach(function (project) {
