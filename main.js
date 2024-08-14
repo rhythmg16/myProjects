@@ -14,6 +14,7 @@ const projectArray = [
   { name: "toDoList", link: "toDoList/main.html" },
   { name: "musicPlayer", link: "musicPlayer/main.html" },
   { name: "stopwatch", link: "stopwatch/main.html" },
+  { name: "calculator", link: "calculator/main.html" },
 ];
 
 projectArray.forEach(function (project) {
